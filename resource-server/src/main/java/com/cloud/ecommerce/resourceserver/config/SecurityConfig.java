@@ -14,7 +14,10 @@ public class SecurityConfig {
                 (authorize) -> authorize
                         .requestMatchers(
                                 "/api/shop/brands",
-                                "/api/shop/categories")
+                                "/api/shop/categories",
+                                "/api/shop/products",
+                                "/api/shop/products/**"
+                                )
                         .permitAll());
         return http.build();
     }
