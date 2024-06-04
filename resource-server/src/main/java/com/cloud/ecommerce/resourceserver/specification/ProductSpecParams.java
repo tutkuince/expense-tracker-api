@@ -9,11 +9,13 @@ public class ProductSpecParams {
     private String sort;
     private int brandId;
     private int categoryId;
-    private final int maxPageSize = 20;
+    private String title;
+    private final int MaxPageSize=20;
+    private int pageIndex;
 
-    public void setMaxPageSize(int pageSize) {
-        if (pageSize > maxPageSize) {
-            this.pageSize = maxPageSize;
+    public void setPageSize(int pageSize) {
+        if(pageSize > MaxPageSize) {
+            this.pageSize= MaxPageSize;
         }
         this.pageSize = pageSize;
     }
