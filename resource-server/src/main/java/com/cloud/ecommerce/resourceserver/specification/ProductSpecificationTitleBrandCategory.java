@@ -17,8 +17,8 @@ public class ProductSpecificationTitleBrandCategory {
     public Specification<Product> getProducts(ProductSpecParams specParams) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
-            if (!Objects.isNull(specParams.getSearch()) && !specParams.getSearch().isEmpty()) {
-                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("title")), "%" + specParams.getSearch().toLowerCase() + "%"));
+            if (!Objects.isNull(specParams.getTitle()) && !specParams.getTitle().isEmpty()) {
+                predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("title")), "%" + specParams.getTitle().toLowerCase() + "%"));
             }
             if (specParams.getCategoryId() != 0) {
                 predicates.add(criteriaBuilder.equal(root.get("category"), new Category(Long.valueOf(specParams.getCategoryId()))));
