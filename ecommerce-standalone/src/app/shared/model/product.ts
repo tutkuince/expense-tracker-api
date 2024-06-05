@@ -1,22 +1,25 @@
+
 export interface IProduct {
-  productId: number;
-  sku: string;
-  title: string;
-  description: string;
-  unitPrice: number;
-  imageUrl: string;
-  isActive: boolean;
-  unitsInStock: number;
-  createdDate: Date;
-  updatedDate: Date;
+    productId: number;
+    unitPrice: number;
+    brandId: number;
+    categoryId: number;
+    title: string;
+    sku: string;
+    description: string;
+    categoryName: string;
+    brandName: string;
+    imageUrl: string;
+
+
+
 }
 
 export interface IBrand {
-  brandId: number;
-  name: string;
+    brandId: number;
+    brandName: string;
 }
-
 export interface ICategory {
-  categoryId: number;
-  name: string;
+    categoryId: number;
+    categoryName: string;
 }
