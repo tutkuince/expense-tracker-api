@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {NavBarComponent} from "./core/nav-bar/nav-bar.component";
+import {ShopComponent} from "./shop/shop.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavBarComponent],
+  imports: [CommonModule, RouterOutlet, NavBarComponent, ShopComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  pageTitle = 'Hello, World of Angular';
+  pageTitle: string = 'Welcome to Stylish Online Shop';
 }
