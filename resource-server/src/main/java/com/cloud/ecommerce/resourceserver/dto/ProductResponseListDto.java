@@ -10,9 +10,9 @@ public class ProductResponseListDto {
     private int totalPages;
     private long totalCount;
     private int pageIndex;
-    private List<ProductResponseDto> productResponseDtoList;
+    private List<ProductResponseDto> dataList;
 
     public ProductResponseListDto() {
-        productResponseDtoList = new ArrayList<>();
+        dataList = new ArrayList<>();
     }
 }

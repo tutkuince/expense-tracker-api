@@ -52,11 +52,11 @@ public class ProductServiceImpl implements ProductService {
             if (!Objects.isNull(productList) && !productList.isEmpty()) {
                 ProductResponseListDto listDto = new ProductResponseListDto();
                 listDto.setTotalCount(productList.size());
-                listDto.setProductResponseDtoList(new ArrayList<>());
+                listDto.setDataList(new ArrayList<>());
                 productList.forEach(product -> {
                     ProductResponseDto responseDto = new ProductResponseDto();
                     responseDto.populateDto(product);
-                    listDto.getProductResponseDtoList().add(responseDto);
+                    listDto.getDataList().add(responseDto);
                 });
                 return listDto;
             }
@@ -73,11 +73,11 @@ public class ProductServiceImpl implements ProductService {
                     dto.setTotalPages(pages.getTotalPages());
                     dto.setTotalCount(pages.getTotalElements());
                     dto.setPageIndex(pages.getNumber() + 1);
-                    dto.setProductResponseDtoList(new ArrayList<>());
+                    dto.setDataList(new ArrayList<>());
                     productList.forEach(product -> {
                         ProductResponseDto responseDto = new ProductResponseDto();
                         responseDto.populateDto(product);
-                        dto.getProductResponseDtoList().add(responseDto);
+                        dto.getDataList().add(responseDto);
                     });
                     return dto;
                 }
