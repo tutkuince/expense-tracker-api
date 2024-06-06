@@ -20,7 +20,7 @@ public class BasketController {
     @PostMapping
     public ResponseEntity<Basket> createBasket(@RequestBody BasketData basketData) {
         Basket basket = new Basket(basketData.getId());
-        basket.setItems(basket.getItems());
+        basket.setItems(basketData.getItems());
         basketRepository.save(basket);
         return ResponseEntity.ok(basket);
     }
