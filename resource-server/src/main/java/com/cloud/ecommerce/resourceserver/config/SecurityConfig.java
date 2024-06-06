@@ -3,6 +3,7 @@ package com.cloud.ecommerce.resourceserver.config;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        /*http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .cors(corsCustomizer -> corsCustomizer.configurationSource(new CorsConfigurationSource() {
                     @Override
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
@@ -31,16 +32,19 @@ public class SecurityConfig {
                         config.setMaxAge(3600L);
                         return config;
                     }
-                }));
-        /*http.authorizeHttpRequests(
+                }));*/
+        http.authorizeHttpRequests(
                 (authorize) -> authorize
                         .requestMatchers(
                                 "/api/shop/brands",
                                 "/api/shop/categories",
                                 "/api/shop/products",
-                                "/api/shop/products/**"
+                                "/api/shop/products/**",
+                                "/basket",
+                                "basket/**"
                                 )
-                        .permitAll());*/
+                        .permitAll())
+                .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
 }
