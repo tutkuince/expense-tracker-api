@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { CartService } from 'src/app/cart/cart.service';
-import { Observable } from 'rxjs';
-import { ICart } from 'src/app/shared/model/cart';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule} from '@angular/router';
+import {CartService} from 'src/app/cart/cart.service';
+import {Observable} from 'rxjs';
+import {ICart} from 'src/app/shared/model/cart';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,12 +12,12 @@ import { ICart } from 'src/app/shared/model/cart';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent  {
-  cart$  : Observable<ICart|null>;
-  constructor(public cartService: CartService){
-    this.cart$= this.cartService.cart$;
+export class NavBarComponent {
+  cart$: Observable<ICart | null>;
+
+  constructor(public cartService: CartService) {
+    this.cart$ = this.cartService.cart$;
   }
-   
-  
+
+
 }
- 
