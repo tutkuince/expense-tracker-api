@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ICartItem } from 'src/app/shared/model/cart';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ICartItem} from 'src/app/shared/model/cart';
 
 @Component({
   selector: 'app-cart-details',
@@ -11,18 +11,20 @@ import { ICartItem } from 'src/app/shared/model/cart';
 })
 export class CartDetailsComponent {
   @Input() items: ICartItem[] = []
-    @Output() increment: EventEmitter<ICartItem> = new EventEmitter<ICartItem>();
-    @Output() decrement: EventEmitter<ICartItem>= new EventEmitter<ICartItem>();
-    @Output() remove: EventEmitter<ICartItem>= new EventEmitter<ICartItem>();
+  @Output() increment: EventEmitter<ICartItem> = new EventEmitter<ICartItem>();
+  @Output() decrement: EventEmitter<ICartItem> = new EventEmitter<ICartItem>();
+  @Output() remove: EventEmitter<ICartItem> = new EventEmitter<ICartItem>();
 
 
-   incrementItemQuantity(item: ICartItem) {
-      this.increment.emit(item);
-   }
-   decrementItemQuantity(item: ICartItem) {
-      this.decrement.emit(item);
-   }
-   removeCartItem(item: ICartItem) {
-      this.remove.emit(item);
-   }
+  incrementItemQuantity(item: ICartItem) {
+    this.increment.emit(item);
+  }
+
+  decrementItemQuantity(item: ICartItem) {
+    this.decrement.emit(item);
+  }
+
+  removeCartItem(item: ICartItem) {
+    this.remove.emit(item);
+  }
 }
