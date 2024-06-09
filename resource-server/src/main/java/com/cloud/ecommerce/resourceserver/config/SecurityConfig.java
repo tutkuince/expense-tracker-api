@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsConfiguration;
@@ -19,7 +20,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-        /*http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+
+        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .cors(corsCustomizer -> corsCustomizer.configurationSource(new CorsConfigurationSource() {
                     @Override
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
@@ -32,19 +36,24 @@ public class SecurityConfig {
                         config.setMaxAge(3600L);
                         return config;
                     }
-                }));*/
+                }));
+
+        http.csrf(AbstractHttpConfigurer::disable);
+
         http.authorizeHttpRequests(
-                (authorize) -> authorize
-                        .requestMatchers(
-                                "/api/shop/brands",
-                                "/api/shop/categories",
-                                "/api/shop/products",
-                                "/api/shop/products/**",
-                                "/basket",
-                                "basket/**"
+                        (authorize) -> authorize
+                                .requestMatchers(
+                                        "/api/shop/brands",
+                                        "/api/shop/categories",
+                                        "/api/shop/products",
+                                        "/api/shop/products/**",
+                                        "/basket",
+                                        "basket/**"
                                 )
-                        .permitAll())
-                .csrf(AbstractHttpConfigurer::disable);
+                                .permitAll()
+                                .requestMatchers("/api/orders").authenticated())
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(jwtAuthenticationConverter)));
+
         return http.build();
     }
 }
