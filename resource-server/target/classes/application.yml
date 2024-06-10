@@ -1,0 +1,27 @@
+server:
+  port: 8087
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3309/ecommerce-spring-cloud?createDatabaseIfNotExist=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&serverTimeZone=UTC
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: org.hibernate.dialect.MySQLDialect
+    generate-ddl: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9007/realms/oauth2-demo-realm
+          jwk-set-uri: http://localhost:9007/realms/oauth2-demo-realm/protocol/openid-connect/certs
+pagination:
+  page:
+    size:
+      default: 12
